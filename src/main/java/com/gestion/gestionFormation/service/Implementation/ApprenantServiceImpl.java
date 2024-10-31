@@ -29,7 +29,7 @@ public class ApprenantServiceImpl implements ApprenantService {
                     existingApprenant.setFormation(apprenant.getFormation());
                     return apprenantRepository.save(existingApprenant);
                 })
-                .orElseThrow(() -> new RuntimeException("Apprenant not found with ID: " + id));
+                .orElseThrow(() -> new RuntimeException("Apprenant not found with Id : " + id));
     }
 
     @Override
