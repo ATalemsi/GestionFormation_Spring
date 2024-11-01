@@ -53,6 +53,7 @@ public class Formation {
 
     @ManyToOne
     @JoinColumn(name = "formateur_id")
+    @JsonManagedReference("formation-formateur")
     private Formateur formateur;
 
 
