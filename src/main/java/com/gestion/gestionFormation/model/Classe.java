@@ -22,7 +22,7 @@ public class Classe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Le nom de la classe est obligatoire")
+    @NotBlank(message = "Le nom de la classe est obligatoire s'il vous plait")
     private String nom;
 
     @NotBlank(message = "Le numéro de la salle est obligatoire")
