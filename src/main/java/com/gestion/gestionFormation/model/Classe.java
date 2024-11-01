@@ -33,5 +33,6 @@ public class Classe {
     private List<Apprenant> apprenants;
 
     @OneToOne(mappedBy = "classe")
+    @JsonManagedReference("classe-formateur")
     private Formateur formateur;
 }
