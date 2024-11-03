@@ -14,7 +14,7 @@ import org.hibernate.annotations.DynamicInsert;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "\"user\"")
+@Table(name = "\"users\"")
 public abstract  class User {
 
     @Id
