@@ -3,6 +3,7 @@ package com.gestion.gestionFormation.controller;
 
 import com.gestion.gestionFormation.model.Apprenant;
 import com.gestion.gestionFormation.service.ApprenantService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class ApprenantController {
     private final ApprenantService apprenantService;
 
     @PostMapping("/register")
-    public Apprenant registerApprenant(@RequestBody Apprenant apprenant) {
+    public Apprenant registerApprenant(@Valid @RequestBody Apprenant apprenant) {
         return apprenantService.RegisterApprenant(apprenant);
     }
 
@@ -27,7 +28,7 @@ public class ApprenantController {
     }
 
     @PutMapping("/update/{id}")
-    public Apprenant updateApprenant(@PathVariable Long id, @RequestBody Apprenant apprenant) {
+    public Apprenant updateApprenant(@PathVariable Long id,@Valid @RequestBody Apprenant apprenant) {
         return apprenantService.updateApprenant(id, apprenant);
     }
 

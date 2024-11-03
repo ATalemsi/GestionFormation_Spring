@@ -34,7 +34,7 @@ public class Formateur extends User {
         return classe != null ? classe.getNom() : null;
     }
 
-    public String getClasseNumSalle() {
+    public Integer getClasseNumSalle() {
         return classe != null ? classe.getNumSalle() : null;
     }
 

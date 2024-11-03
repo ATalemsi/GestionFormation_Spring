@@ -1,5 +1,7 @@
 package com.gestion.gestionFormation.service.Implementation;
 
+import com.gestion.gestionFormation.exception.ClasseNotFoundException;
+import com.gestion.gestionFormation.exception.FormateurNotFoundException;
 import com.gestion.gestionFormation.model.Formateur;
 import com.gestion.gestionFormation.repository.FormateurRepository;
 import com.gestion.gestionFormation.service.FormateurService;
@@ -29,12 +31,13 @@ public class FormateurServiceImpl implements FormateurService {
                     existingFormateur.setFormation(formateur.getFormation());
                     return formateurRepository.save(existingFormateur);
                 })
-                .orElseThrow(() -> new RuntimeException("Formateur not found with Id : " + id));
+                .orElseThrow(() -> new FormateurNotFoundException(id));
     }
 
     @Override
     public Optional<Formateur> getFormateur(Long id) {
-        return formateurRepository.findById(id);
+        return Optional.ofNullable(formateurRepository.findById(id)
+                .orElseThrow(() -> new FormateurNotFoundException(id)));
     }
 
     @Override
@@ -44,6 +47,9 @@ public class FormateurServiceImpl implements FormateurService {
 
     @Override
     public String deleteFormateur(Long id) {
+        if (!formateurRepository.existsById(id)) {
+            throw new FormateurNotFoundException(id);
+        }
         formateurRepository.deleteById(id);
         return "Formateur Supprimé";
     }

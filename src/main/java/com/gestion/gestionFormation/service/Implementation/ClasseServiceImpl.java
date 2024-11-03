@@ -1,9 +1,12 @@
 package com.gestion.gestionFormation.service.Implementation;
 
+import com.gestion.gestionFormation.exception.ClasseNotFoundException;
 import com.gestion.gestionFormation.model.Classe;
 import com.gestion.gestionFormation.repository.ClasseRepository;
 import com.gestion.gestionFormation.service.ClasseService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +17,6 @@ import java.util.Optional;
 public class ClasseServiceImpl implements ClasseService {
 
     private final ClasseRepository classeRepository;
-
 
     @Override
     public Classe addClasse(Classe classe) {
@@ -29,22 +31,46 @@ public class ClasseServiceImpl implements ClasseService {
                     existingClasse.setNumSalle(classe.getNumSalle());
                     return classeRepository.save(existingClasse);
                 })
-                .orElseThrow(() -> new RuntimeException("Classe not found with ID: " + id));
+                .orElseThrow(() ->  new ClasseNotFoundException(id));
     }
 
     @Override
     public Optional<Classe> getClasse(Long id) {
-        return classeRepository.findById(id);
+        return Optional.ofNullable(classeRepository.findById(id)
+                .orElseThrow(() -> new ClasseNotFoundException(id)));
     }
 
     @Override
     public String deleteClasse(Long id) {
+        if (!classeRepository.existsById(id)) {
+            throw new ClasseNotFoundException(id);
+        }
          classeRepository.deleteById(id);
         return "Classe Supprimer";
     }
 
     @Override
-    public List<Classe> getAllClasses() {
-        return classeRepository.findAll();
+    public Page<Classe> getAllClasses(Pageable pageable) {
+        return classeRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Classe> findByNom(String nom) {
+        return classeRepository.findByNom(nom);
+    }
+
+    @Override
+    public List<Classe> findByNomAndNumSalle(String nom, int numSalle) {
+        return classeRepository.findByNomAndNumSalle(nom, numSalle);
+    }
+
+    @Override
+    public List<Classe> searchByNomAndNumSalle(String nom, int numSalle) {
+        return classeRepository.searchByNomAndNumSalle(nom, numSalle);
+    }
+
+    @Override
+    public Page<Classe> getClassesByNom(String nom, Pageable pageable) {
+        return classeRepository.findByNom(nom, pageable);
     }
 }

@@ -3,6 +3,7 @@ package com.gestion.gestionFormation.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,8 +26,8 @@ public class Classe {
     @NotBlank(message = "Le nom de la classe est obligatoire s'il vous plait")
     private String nom;
 
-    @NotBlank(message = "Le numéro de la salle est obligatoire")
-    private String numSalle;
+    @NotNull(message = "le numero de la salle est obligatoire")
+    private Integer numSalle;
 
     @OneToMany(mappedBy = "classe")
     @JsonManagedReference("classe-apprenant")

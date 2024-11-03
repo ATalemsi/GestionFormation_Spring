@@ -3,6 +3,7 @@ package com.gestion.gestionFormation.controller;
 
 import com.gestion.gestionFormation.model.Formation;
 import com.gestion.gestionFormation.service.FormationService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class FormationController {
 
 
     @PostMapping("/add")
-    public Formation add(@RequestBody Formation formation) {
+    public Formation add(@Valid @RequestBody Formation formation) {
         return formationService.addFormation(formation);
     }
 
@@ -27,7 +28,7 @@ public class FormationController {
     }
 
     @PutMapping("/update/{id}")
-    public Formation update(@PathVariable Long id, @RequestBody Formation formation) {
+    public Formation update(@PathVariable Long id,@Valid @RequestBody Formation formation) {
         return formationService.updateFormation(id,formation);
     }
 
