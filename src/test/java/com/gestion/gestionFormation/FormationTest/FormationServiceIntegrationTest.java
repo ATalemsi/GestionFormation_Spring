@@ -44,7 +44,7 @@ public class FormationServiceIntegrationTest {
         formation.setStatut(Formation.StatutFormation.PLANIFIEE);
         formation.setPrerequis("None");
         formation.setDateDebut(LocalDate.ofEpochDay(2024- 1 - 1));
-        formation.setDateFin(LocalDate.ofEpochDay(2024 - 1));
+        formation.setDateFin(LocalDate.ofEpochDay(2024 - 2));
 
         Formation savedFormation = formationService.addFormation(formation);
 
