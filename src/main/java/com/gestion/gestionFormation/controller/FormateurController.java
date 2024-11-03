@@ -5,6 +5,8 @@ import com.gestion.gestionFormation.model.Formateur;
 import com.gestion.gestionFormation.service.FormateurService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,12 +16,14 @@ import java.util.Optional;
 @RequestMapping("/formateur")
 @AllArgsConstructor
 public class FormateurController {
+
     private final FormateurService formateurService;
 
 
     @PostMapping("/register")
-    public Formateur registerFormateur(@Valid @RequestBody Formateur formateur) {
-        return formateurService.RegisterFormateur(formateur);
+    public Formateur registerFormateur(@Valid @RequestBody Formateur formateur,@RequestParam Long formationId) {
+        Formateur createdFormateur = formateurService.RegisterFormateur(formateur, formationId);
+        return new ResponseEntity<>(createdFormateur, HttpStatus.CREATED).getBody();
     }
 
     @GetMapping("/all")

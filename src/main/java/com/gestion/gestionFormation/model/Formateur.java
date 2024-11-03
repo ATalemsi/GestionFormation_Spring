@@ -25,8 +25,8 @@ public class Formateur extends User {
     @JsonBackReference("classe-formateur")
     private Classe classe;
 
-    @OneToOne
-    @JoinColumn(name = "formation_id")
+
+    @OneToOne(mappedBy = "formateur", cascade = CascadeType.PERSIST)
     @JsonBackReference("formation-formateur")
     private Formation formation;
 

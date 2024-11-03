@@ -1,9 +1,12 @@
 package com.gestion.gestionFormation.service.Implementation;
 
 import com.gestion.gestionFormation.exception.ClasseNotFoundException;
+import com.gestion.gestionFormation.exception.CourseNotFoundException;
 import com.gestion.gestionFormation.exception.FormateurNotFoundException;
 import com.gestion.gestionFormation.model.Formateur;
+import com.gestion.gestionFormation.model.Formation;
 import com.gestion.gestionFormation.repository.FormateurRepository;
+import com.gestion.gestionFormation.repository.FormationRepository;
 import com.gestion.gestionFormation.service.FormateurService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,11 +18,20 @@ import java.util.Optional;
 @AllArgsConstructor
 public class FormateurServiceImpl implements FormateurService {
     private  final FormateurRepository formateurRepository;
+    private final FormationRepository formationRepository;
 
 
     @Override
-    public Formateur RegisterFormateur(Formateur formateur) {
-        return formateurRepository.save(formateur);
+    public Formateur RegisterFormateur(Formateur formateur, Long formationId) {
+        Formation formation = formationRepository.findById(formationId)
+                .orElseThrow(() -> new CourseNotFoundException(formationId));
+
+        formation.setFormateur(formateur);
+
+
+        formationRepository.save(formation);
+
+        return formateur;
     }
 
     @Override

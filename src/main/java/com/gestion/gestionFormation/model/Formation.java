@@ -51,8 +51,8 @@ public class Formation {
     private StatutFormation statut;
 
 
-    @ManyToOne
-    @JoinColumn(name = "formateur_id")
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "formateur_id" , referencedColumnName = "id")
     @JsonManagedReference("formation-formateur")
     private Formateur formateur;
 
