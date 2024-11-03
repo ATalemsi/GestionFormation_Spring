@@ -3,6 +3,7 @@ package com.gestion.gestionFormation.controller;
 
 import com.gestion.gestionFormation.model.Classe;
 import com.gestion.gestionFormation.service.ClasseService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +22,7 @@ public class ClasseController {
     private final ClasseService classeService;
 
     @PostMapping(value = "/add" ,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Classe addClasse(@RequestBody Classe classe) {
+    public Classe addClasse(@Valid @RequestBody Classe classe) {
         return classeService.addClasse(classe);
     }
 
@@ -37,7 +38,7 @@ public class ClasseController {
 
 
     @PutMapping(value = "/update/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Classe updateClasse(@PathVariable Long id,@RequestBody Classe classe) {
+    public Classe updateClasse(@PathVariable Long id,@Valid @RequestBody Classe classe) {
          return classeService.updateClasse(id,classe);
     }
 

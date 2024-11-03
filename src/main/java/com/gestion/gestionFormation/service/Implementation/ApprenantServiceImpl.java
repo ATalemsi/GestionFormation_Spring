@@ -1,5 +1,7 @@
 package com.gestion.gestionFormation.service.Implementation;
 
+import com.gestion.gestionFormation.exception.ApprenantNotFoundException;
+import com.gestion.gestionFormation.exception.ClasseNotFoundException;
 import com.gestion.gestionFormation.model.Apprenant;
 import com.gestion.gestionFormation.repository.ApprenantRepository;
 import com.gestion.gestionFormation.service.ApprenantService;
@@ -29,12 +31,13 @@ public class ApprenantServiceImpl implements ApprenantService {
                     existingApprenant.setFormation(apprenant.getFormation());
                     return apprenantRepository.save(existingApprenant);
                 })
-                .orElseThrow(() -> new RuntimeException("Apprenant not found with Id : " + id));
+                .orElseThrow(() -> new ApprenantNotFoundException(id));
     }
 
     @Override
     public Optional<Apprenant> getApprenant(Long id) {
-        return apprenantRepository.findById(id);
+       return Optional.ofNullable(apprenantRepository.findById(id)
+                .orElseThrow(() -> new ApprenantNotFoundException(id)));
     }
 
     @Override
@@ -44,6 +47,9 @@ public class ApprenantServiceImpl implements ApprenantService {
 
     @Override
     public String deleteApprenant(Long id) {
+        if (!apprenantRepository.existsById(id)) {
+            throw new ApprenantNotFoundException(id);
+        }
         apprenantRepository.deleteById(id);
         return "Apprenant Supprimé";
     }

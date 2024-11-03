@@ -1,5 +1,6 @@
 package com.gestion.gestionFormation.service.Implementation;
 
+import com.gestion.gestionFormation.exception.ClasseNotFoundException;
 import com.gestion.gestionFormation.model.Classe;
 import com.gestion.gestionFormation.repository.ClasseRepository;
 import com.gestion.gestionFormation.service.ClasseService;
@@ -17,7 +18,6 @@ public class ClasseServiceImpl implements ClasseService {
 
     private final ClasseRepository classeRepository;
 
-
     @Override
     public Classe addClasse(Classe classe) {
         return classeRepository.save(classe);
@@ -31,16 +31,20 @@ public class ClasseServiceImpl implements ClasseService {
                     existingClasse.setNumSalle(classe.getNumSalle());
                     return classeRepository.save(existingClasse);
                 })
-                .orElseThrow(() -> new RuntimeException("Classe not found with ID: " + id));
+                .orElseThrow(() ->  new ClasseNotFoundException(id));
     }
 
     @Override
     public Optional<Classe> getClasse(Long id) {
-        return classeRepository.findById(id);
+        return Optional.ofNullable(classeRepository.findById(id)
+                .orElseThrow(() -> new ClasseNotFoundException(id)));
     }
 
     @Override
     public String deleteClasse(Long id) {
+        if (!classeRepository.existsById(id)) {
+            throw new ClasseNotFoundException(id);
+        }
          classeRepository.deleteById(id);
         return "Classe Supprimer";
     }

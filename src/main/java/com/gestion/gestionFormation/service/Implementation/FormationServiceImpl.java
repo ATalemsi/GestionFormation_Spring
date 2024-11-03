@@ -1,5 +1,7 @@
 package com.gestion.gestionFormation.service.Implementation;
 
+import com.gestion.gestionFormation.exception.ClasseNotFoundException;
+import com.gestion.gestionFormation.exception.CourseNotFoundException;
 import com.gestion.gestionFormation.model.Formation;
 import com.gestion.gestionFormation.repository.FormationRepository;
 import com.gestion.gestionFormation.service.FormationService;
@@ -32,12 +34,13 @@ public class FormationServiceImpl implements FormationService {
                     existingFormation.setStatut(formation.getStatut());
                     return formationRepository.save(existingFormation);
                 })
-                .orElseThrow(() -> new RuntimeException("Formation not found with ID: " + id));
+                .orElseThrow(() -> new CourseNotFoundException(id));
     }
 
     @Override
     public Optional<Formation> getFormation(Long id) {
-        return formationRepository.findById(id);
+        return Optional.ofNullable(formationRepository.findById(id)
+                .orElseThrow(() -> new CourseNotFoundException(id)));
     }
 
     @Override
@@ -47,6 +50,9 @@ public class FormationServiceImpl implements FormationService {
 
     @Override
     public String deleteFormation(Long id) {
+        if (!formationRepository.existsById(id)) {
+            throw new CourseNotFoundException(id);
+        }
         formationRepository.deleteById(id);
         return "Formation Supprimée";
     }

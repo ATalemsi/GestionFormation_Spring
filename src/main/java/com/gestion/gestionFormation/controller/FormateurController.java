@@ -3,6 +3,7 @@ package com.gestion.gestionFormation.controller;
 
 import com.gestion.gestionFormation.model.Formateur;
 import com.gestion.gestionFormation.service.FormateurService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class FormateurController {
 
 
     @PostMapping("/register")
-    public Formateur registerFormateur(@RequestBody Formateur formateur) {
+    public Formateur registerFormateur(@Valid @RequestBody Formateur formateur) {
         return formateurService.RegisterFormateur(formateur);
     }
 
@@ -27,7 +28,7 @@ public class FormateurController {
     }
 
     @PutMapping("/update/{id}")
-    public Formateur updateFormateur(@PathVariable Long id, @RequestBody Formateur formateur) {
+    public Formateur updateFormateur(@PathVariable Long id,@Valid @RequestBody Formateur formateur) {
         return formateurService.updateFormateur(id, formateur);
     }
 
