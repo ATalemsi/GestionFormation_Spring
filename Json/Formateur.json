@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "nom": "yassine",
+    "prenom": "hanach",
+    "email": "yassine@example.com",
+    "specialite": "Mathematics",
+    "classeNom": "CodeX",
+    "formationNom": "Introduction to Java",
+    "formationId": 2,
+    "classeNumSalle": 5
+  },
+  {
+    "id": 4,
+    "nom": "Kamal",
+    "prenom": "hanach",
+    "email": "Kamal@example.com",
+    "specialite": "Mathematics",
+    "classeNom": "JavaAura",
+    "formationNom": "Introduction to Python",
+    "formationId": 1,
+    "classeNumSalle": 4
+  }
+]

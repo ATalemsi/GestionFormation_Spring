@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "titre": "Introduction to Python",
+    "niveau": "Beginner",
+    "prerequis": "None",
+    "capaciteMin": 5,
+    "capaciteMax": 25,
+    "dateDebut": "2024-11-01",
+    "dateFin": "2024-12-01",
+    "statut": "PLANIFIEE",
+    "formateur": {
+      "id": 4,
+      "nom": "Kamal",
+      "prenom": "hanach",
+      "email": "Kamal@example.com",
+      "specialite": "Mathematics",
+      "classeNom": "JavaAura",
+      "formationNom": "Introduction to Python",
+      "formationId": 1,
+      "classeNumSalle": 4
+    },
+    "apprenants": []
+  },
+  {
+    "id": 2,
+    "titre": "Introduction to Java",
+    "niveau": "Beginner",
+    "prerequis": "None",
+    "capaciteMin": 5,
+    "capaciteMax": 25,
+    "dateDebut": "2024-11-01",
+    "dateFin": "2024-12-01",
+    "statut": "PLANIFIEE",
+    "formateur": {
+      "id": 1,
+      "nom": "yassine",
+      "prenom": "hanach",
+      "email": "yassine@example.com",
+      "specialite": "Mathematics",
+      "classeNom": "CodeX",
+      "formationNom": "Introduction to Java",
+      "formationId": 2,
+      "classeNumSalle": 5
+    },
+    "apprenants": [
+      {
+        "id": 2,
+        "nom": "john",
+        "prenom": "doe",
+        "email": "johndoe@example.com",
+        "niveau": "Beginner",
+        "classeNom": "CodeX",
+        "formationNom": "Introduction to Java",
+        "formationId": 2,
+        "classeNumSalle": 5
+      },
+      {
+        "id": 3,
+        "nom": "Abdellah",
+        "prenom": "Talemsi",
+        "email": "Abdo@example.com",
+        "niveau": "Beginner",
+        "classeNom": "CodeX",
+        "formationNom": "Introduction to Java",
+        "formationId": 2,
+        "classeNumSalle": 5
+      }
+    ]
+  }
+]

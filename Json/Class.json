@@ -1,0 +1,86 @@
+{
+  "content": [
+    {
+      "id": 1,
+      "nom": "CodeX",
+      "numSalle": 5,
+      "apprenants": [
+        {
+          "id": 2,
+          "nom": "john",
+          "prenom": "doe",
+          "email": "johndoe@example.com",
+          "niveau": "Beginner",
+          "classeNom": "CodeX",
+          "formationNom": "Introduction to Java",
+          "formationId": 2,
+          "classeNumSalle": 5
+        },
+        {
+          "id": 3,
+          "nom": "Abdellah",
+          "prenom": "Talemsi",
+          "email": "Abdo@example.com",
+          "niveau": "Beginner",
+          "classeNom": "CodeX",
+          "formationNom": "Introduction to Java",
+          "formationId": 2,
+          "classeNumSalle": 5
+        }
+      ],
+      "formateur": {
+        "id": 1,
+        "nom": "yassine",
+        "prenom": "hanach",
+        "email": "yassine@example.com",
+        "specialite": "Mathematics",
+        "classeNom": "CodeX",
+        "formationNom": "Introduction to Java",
+        "formationId": 2,
+        "classeNumSalle": 5
+      }
+    },
+    {
+      "id": 2,
+      "nom": "JavaAura",
+      "numSalle": 4,
+      "apprenants": [],
+      "formateur": {
+        "id": 4,
+        "nom": "Kamal",
+        "prenom": "hanach",
+        "email": "Kamal@example.com",
+        "specialite": "Mathematics",
+        "classeNom": "JavaAura",
+        "formationNom": "Introduction to Python",
+        "formationId": 1,
+        "classeNumSalle": 4
+      }
+    }
+  ],
+  "pageable": {
+    "pageNumber": 0,
+    "pageSize": 3,
+    "sort": {
+      "empty": true,
+      "unsorted": true,
+      "sorted": false
+    },
+    "offset": 0,
+    "unpaged": false,
+    "paged": true
+  },
+  "totalPages": 1,
+  "totalElements": 2,
+  "last": true,
+  "size": 3,
+  "number": 0,
+  "sort": {
+    "empty": true,
+    "unsorted": true,
+    "sorted": false
+  },
+  "first": true,
+  "numberOfElements": 2,
+  "empty": false
+}
